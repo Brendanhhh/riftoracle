@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from typing import cast
 
 from riftoracle.data import parse_match_payload
 from riftoracle.features import build_feature_matrix
-
 
 FIXTURE_PATH = Path(__file__).parent / "fixtures" / "sample_match.json"
 
@@ -14,7 +14,7 @@ FIXTURE_PATH = Path(__file__).parent / "fixtures" / "sample_match.json"
 class FeatureMatrixTests(unittest.TestCase):
     def test_build_feature_matrix_returns_expected_columns_and_label(self) -> None:
         payload = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
-        example = parse_match_payload(payload)
+        example = parse_match_payload(cast(dict[str, object], payload))
 
         matrix = build_feature_matrix([example])
 

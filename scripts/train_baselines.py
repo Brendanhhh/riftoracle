@@ -46,7 +46,11 @@ def validate_training_data(sample_count: int, labels: list[int], test_size: floa
     test_count = max(1, int(round(sample_count * test_size)))
     train_count = sample_count - test_count
     minority_class_count = min(labels.count(label) for label in unique_labels)
-    if test_count < len(unique_labels) or train_count < len(unique_labels) or minority_class_count < 2:
+    if (
+        test_count < len(unique_labels)
+        or train_count < len(unique_labels)
+        or minority_class_count < 2
+    ):
         raise SystemExit(
             "Not enough class-balanced data for the requested train/test split. Add more match "
             "files or adjust --test-size after collecting more data."

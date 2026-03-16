@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -95,7 +96,10 @@ def iter_match_files(matches_dir: Path) -> Iterable[Path]:
     yield from sorted(matches_dir.rglob("*.json"))
 
 
-def load_match_examples(matches_dir: str | Path, sample_size: int | None = None) -> list[MatchExample]:
+def load_match_examples(
+    matches_dir: str | Path,
+    sample_size: int | None = None,
+) -> list[MatchExample]:
     base = Path(matches_dir)
     if not base.exists():
         raise FileNotFoundError(f"Matches directory does not exist: {base}")

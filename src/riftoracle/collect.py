@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import time
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -16,6 +17,17 @@ TIERS = ["IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "EMERALD", "DIAMOND"]
 DIVISIONS = ["I", "II", "III", "IV"]
 REQUEST_LIMIT = 100
 WINDOW_SECONDS = 120
+
+
+def _windowed_recent(
+    timestamps: Iterable[datetime],
+    now: datetime,
+) -> list[datetime]:
+    return [
+        timestamp
+        for timestamp in timestamps
+        if timestamp > now - timedelta(seconds=WINDOW_SECONDS)
+    ]
 
 
 @dataclass(frozen=True)
@@ -91,11 +103,7 @@ class RiotCollector:
 
     def rate_limit_sleep(self) -> None:
         now = datetime.now()
-        self.request_timestamps = [
-            timestamp
-            for timestamp in self.request_timestamps
-            if timestamp > now - timedelta(seconds=WINDOW_SECONDS)
-        ]
+        self.request_timestamps = _windowed_recent(self.request_timestamps, now)
         if len(self.request_timestamps) >= REQUEST_LIMIT:
             oldest = self.request_timestamps[0]
             sleep_time = (oldest + timedelta(seconds=WINDOW_SECONDS)) - now
@@ -108,13 +116,18 @@ class RiotCollector:
             import requests
         except ImportError as exc:
             raise ImportError(
-                "requests is required for data collection. Install with `pip install -e .[collector]`."
+                "requests is required for data collection. "
+                "Install with `pip install -e .[collector]`."
             ) from exc
 
         while True:
             self.rate_limit_sleep()
             try:
-                response = requests.get(url, headers={"X-Riot-Token": self.settings.api_key}, timeout=30)
+                response = requests.get(
+                    url,
+                    headers={"X-Riot-Token": self.settings.api_key},
+                    timeout=30,
+                )
                 if response.status_code == 429:
                     retry_after = int(response.headers.get("Retry-After", 10))
                     self.logger.warning("429 received. Sleeping %ss", retry_after)
@@ -186,7 +199,9 @@ class RiotCollector:
         state = self.load_state()
 
         for tier in TIERS:
-            divisions_to_process = list(reversed(DIVISIONS)) if tier == "DIAMOND" else DIVISIONS
+            divisions_to_process = (
+                list(reversed(DIVISIONS)) if tier == "DIAMOND" else DIVISIONS
+            )
             for division in divisions_to_process:
                 self.logger.info("Processing %s %s", tier, division)
                 collected = 0
@@ -225,7 +240,9 @@ class RiotCollector:
                     time.sleep(0.5)
 
                 if tier == "DIAMOND" and division == "I":
-                    self.logger.info("Finished processing Diamond I. Stopping further processing.")
+                    self.logger.info(
+                        "Finished processing Diamond I. Stopping further processing."
+                    )
                     return
 
 

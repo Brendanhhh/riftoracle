@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from typing import cast
 
 from riftoracle.data import load_match_examples, parse_match_payload
-
 
 FIXTURE_PATH = Path(__file__).parent / "fixtures" / "sample_match.json"
 WORKSPACE_TMP = Path(__file__).parent / "tmp"
@@ -15,7 +15,7 @@ class DataLoadingTests(unittest.TestCase):
     def test_parse_match_payload_builds_expected_label_and_aggregates(self) -> None:
         payload = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
 
-        example = parse_match_payload(payload)
+        example = parse_match_payload(cast(dict[str, object], payload))
 
         self.assertEqual(example.match_id, "NA1_TEST_MATCH")
         self.assertEqual(example.label_blue_win, 1)

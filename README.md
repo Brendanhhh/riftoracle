@@ -123,6 +123,8 @@ mypy src
 pytest
 ```
 
+Exploratory notebooks in the repository are reference artifacts and are not part of the enforced Ruff lint surface.
+
 See `CONTRIBUTING.md` for the contributor workflow.
 
 ## Roadmap
