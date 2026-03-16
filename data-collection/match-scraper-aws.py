@@ -4,6 +4,7 @@ import csv
 import time
 import requests
 import logging
+import argparse
 from datetime import datetime, timedelta
 
 # --- Configuration ---
@@ -169,7 +170,12 @@ def collect_data(matches_per_tier=5):
                 logging.info("Finished processing Diamond I. Stopping further processing.")
                 return
             
-print(f"Input desired number of matches per tier: ")
-x = int(input)
+def parse_args():
+    parser = argparse.ArgumentParser(description="Collect Riot match payloads by tier/division")
+    parser.add_argument("--matches-per-tier", type=int, default=100)
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    collect_data(matches_per_tier=100)
+    args = parse_args()
+    collect_data(matches_per_tier=args.matches_per_tier)
