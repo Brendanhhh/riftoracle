@@ -12,7 +12,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-
 TIERS = ["IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "EMERALD", "DIAMOND"]
 DIVISIONS = ["I", "II", "III", "IV"]
 REQUEST_LIMIT = 100
