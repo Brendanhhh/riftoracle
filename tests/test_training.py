@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from scripts.train_baselines import evaluate_predictions, validate_training_data
+from riftoracle.training import evaluate_predictions, validate_training_data
 
 
 class TrainingHelpersTests(unittest.TestCase):

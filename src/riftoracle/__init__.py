@@ -7,6 +7,7 @@ from .models import (
     RandomForestWinModel,
     WinChanceModel,
 )
+from .training import evaluate_predictions, validate_training_data
 
 __all__ = [
     "FeatureMatrix",
@@ -15,5 +16,7 @@ __all__ = [
     "RandomForestWinModel",
     "WinChanceModel",
     "build_feature_matrix",
+    "evaluate_predictions",
     "load_match_examples",
+    "validate_training_data",
 ]
