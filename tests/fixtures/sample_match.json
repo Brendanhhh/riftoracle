@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "matchId": "NA1_TEST_MATCH"
+  },
+  "info": {
+    "participants": [
+      {
+        "teamId": 100,
+        "kills": 5,
+        "deaths": 2,
+        "assists": 7,
+        "totalDamageDealtToChampions": 18000,
+        "goldEarned": 12000,
+        "visionScore": 20,
+        "totalMinionsKilled": 180,
+        "neutralMinionsKilled": 12
+      },
+      {
+        "teamId": 100,
+        "kills": 4,
+        "deaths": 3,
+        "assists": 6,
+        "totalDamageDealtToChampions": 16000,
+        "goldEarned": 11500,
+        "visionScore": 18,
+        "totalMinionsKilled": 175,
+        "neutralMinionsKilled": 8
+      },
+      {
+        "teamId": 100,
+        "kills": 6,
+        "deaths": 4,
+        "assists": 5,
+        "totalDamageDealtToChampions": 17000,
+        "goldEarned": 11800,
+        "visionScore": 16,
+        "totalMinionsKilled": 160,
+        "neutralMinionsKilled": 10
+      },
+      {
+        "teamId": 100,
+        "kills": 3,
+        "deaths": 1,
+        "assists": 9,
+        "totalDamageDealtToChampions": 14000,
+        "goldEarned": 11000,
+        "visionScore": 30,
+        "totalMinionsKilled": 40,
+        "neutralMinionsKilled": 0
+      },
+      {
+        "teamId": 100,
+        "kills": 2,
+        "deaths": 2,
+        "assists": 14,
+        "totalDamageDealtToChampions": 9000,
+        "goldEarned": 9500,
+        "visionScore": 42,
+        "totalMinionsKilled": 25,
+        "neutralMinionsKilled": 0
+      },
+      {
+        "teamId": 200,
+        "kills": 2,
+        "deaths": 5,
+        "assists": 3,
+        "totalDamageDealtToChampions": 12000,
+        "goldEarned": 9800,
+        "visionScore": 14,
+        "totalMinionsKilled": 170,
+        "neutralMinionsKilled": 8
+      },
+      {
+        "teamId": 200,
+        "kills": 1,
+        "deaths": 4,
+        "assists": 4,
+        "totalDamageDealtToChampions": 11000,
+        "goldEarned": 9300,
+        "visionScore": 15,
+        "totalMinionsKilled": 165,
+        "neutralMinionsKilled": 7
+      },
+      {
+        "teamId": 200,
+        "kills": 3,
+        "deaths": 6,
+        "assists": 2,
+        "totalDamageDealtToChampions": 13000,
+        "goldEarned": 10100,
+        "visionScore": 12,
+        "totalMinionsKilled": 155,
+        "neutralMinionsKilled": 9
+      },
+      {
+        "teamId": 200,
+        "kills": 0,
+        "deaths": 3,
+        "assists": 6,
+        "totalDamageDealtToChampions": 8000,
+        "goldEarned": 8700,
+        "visionScore": 26,
+        "totalMinionsKilled": 35,
+        "neutralMinionsKilled": 0
+      },
+      {
+        "teamId": 200,
+        "kills": 1,
+        "deaths": 2,
+        "assists": 5,
+        "totalDamageDealtToChampions": 7000,
+        "goldEarned": 8200,
+        "visionScore": 35,
+        "totalMinionsKilled": 20,
+        "neutralMinionsKilled": 0
+      }
+    ],
+    "teams": [
+      {
+        "teamId": 100,
+        "win": true
+      },
+      {
+        "teamId": 200,
+        "win": false
+      }
+    ]
+  }
+}
